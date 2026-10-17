@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import {
   LayoutDashboard, ReceiptText, PackageSearch, Warehouse, LineChart,
-  LogOut, Menu, X, ShieldCheck, CircleUser, ArrowUpRight, Settings2, LoaderCircle
+  LogOut, Menu, X, ShieldCheck, CircleUser, ArrowUpRight, LoaderCircle
 } from 'lucide-react';
 import { useAuth } from '@/components/auth-provider';
 import type { Role } from '@/lib/types';
@@ -34,7 +34,7 @@ export function AppShell({ children, title, subtitle, requiredRole }: { children
     return <div className="screen-loader"><div className="loading-orb"><LoaderCircle size={24} className="spin" /></div><span>Memuat ruang kerja...</span></div>;
   }
 
-  const items = navItems.filter(item => item.roles.includes(profile.role));
+  const items = navItems.filter(item => (item.roles as readonly string[]).includes(profile.role));
   return (
     <div className="app-frame">
       {mobileNav && <button aria-label="Tutup navigasi" className="mobile-backdrop" onClick={() => setMobileNav(false)} />}

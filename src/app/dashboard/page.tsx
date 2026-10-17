@@ -47,7 +47,7 @@ export default function DashboardPage() {
         setLowStock(inventoryData.low_stock_products ?? []);
         setLowStockCount(Number(inventoryData.low_stock_count ?? 0));
         setCriticalCount(Number(inventoryData.critical_count ?? 0));
-        setActiveProductCount(Number(inventoryData.active_products ?? 0));
+        setActiveProductCount(Number((inventoryData as { active_products?: number }).active_products ?? 0));
       }
     } catch (caught) { setError(errorMessage(caught)); }
     finally { setPending(false); }
